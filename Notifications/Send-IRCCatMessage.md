@@ -2,7 +2,7 @@
 
 ## Usage
 
-	* Save this script to the folder Program Files (x86)\PRTG Network Monitor\Custom Sensors\Notications
+	* Save this script to the folder Program Files (x86)\PRTG Network Monitor\Notifications
 
 	* Create or alter an existing notification, and enable execute program
 
