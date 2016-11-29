@@ -2,6 +2,11 @@ Import-Module Hyper-V
  
 $VMReplication = Get-VMReplication | select Name,Health,State
 
+if (($VMReplication).count -lt 1) {
+  Write-Host 1, ": No data returned from Get-VMReplication! Either no VMs are replicating, or have not elevated!" 
+  Exit 4
+}
+
 $ErrMessage = " "
 $Errors = 0
 $Warning = 0
@@ -29,7 +34,7 @@ foreach ($Name in $VMReplication) {
 }
 
 If ($Errors -eq 0) {
-  Write-Host 0, ":OK", "Replication is working fine"
+  Write-Host 0, ":OK", "Replication is working fine for", ($VMReplication).count, "of", (Get-VM).count, "VMs"
   Exit 0
 }
 elseif ($Critical -gt 0) {
