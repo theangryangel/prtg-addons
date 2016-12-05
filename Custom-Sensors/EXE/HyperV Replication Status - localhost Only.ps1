@@ -37,14 +37,6 @@ If ($Errors -eq 0) {
   Write-Host 0, ":OK", "Replication is working fine for", ($VMReplication).count, "of", (Get-VM).count, "VMs"
   Exit 0
 }
-elseif ($Critical -gt 0) {
-  Write-Host $Errors, ":", $ErrMessage 
-  Exit 4
-}
-elseif ($Warning -gt 0) {
-  Write-Host $Errors, ":", $ErrMessage
-  Exit 1 
-}
 else {
   Write-Host $Errors, ":", $ErrMessage
   Exit 2
