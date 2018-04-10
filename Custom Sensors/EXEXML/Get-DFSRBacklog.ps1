@@ -156,6 +156,10 @@ Function Get-DFSRBacklogInfo ($Computer, $RGroups, $RFolders, $RConnections)
            {
                 $ReplicatedFolderName = $Folder.ReplicatedFolderName
                 $FolderEnabled = $Folder.Enabled
+
+                #skip disabled groups
+                if(!$FolderEnabled) {continue}
+                
                 Foreach ($Connection in $Rconnections)
                 {
                     If ($Connection.ReplicationGroupGUID -eq $ReplicationGroupGUID) 
