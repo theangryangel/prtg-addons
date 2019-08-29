@@ -193,7 +193,7 @@ Function Get-DFSRBacklogInfo ($Computer, $RGroups, $RFolders, $RConnections)
                                         #Get the backlogcount from outbound partner
                                         $WMIQuery = "SELECT * FROM DfsrReplicatedFolderInfo WHERE ReplicationGroupGUID = '" + $ReplicationGroupGUID + "' AND ReplicatedFolderName = '" + $ReplicatedFolderName + "'"
                                         $OutboundPartnerWMI = Get-WmiObject -computername $Smem -Namespace "root\MicrosoftDFS" -Query $WMIQuery
-                                        $BacklogCount = $OutboundPartnerWMI.GetOutboundBacklogFileCount($Vv).BacklogFileCount
+                                        $BacklogCount = $OutboundPartnerWMI.GetOutboundBacklogFileCount($Vv).BacklogFileCount | select-object -first 1
 					Write-Output "<result>"
 					Write-Output "<channel>${ReplicatedFolderName} In</channel>"
 					Write-Output "<value>${BacklogCount}</value>"
@@ -222,7 +222,7 @@ Function Get-DFSRBacklogInfo ($Computer, $RGroups, $RFolders, $RConnections)
                                         $WMIQuery = "SELECT * FROM DfsrReplicatedFolderInfo WHERE ReplicationGroupGUID = '" + $ReplicationGroupGUID + "' AND ReplicatedFolderName = '" + $ReplicatedFolderName + "'"
 										#Write-Output $WMIQuery
                                         $OutboundPartnerWMI = Get-WmiObject -computername $Smem -Namespace "root\MicrosoftDFS" -Query $WMIQuery
-                                        $BacklogCount = $OutboundPartnerWMI.GetOutboundBacklogFileCount($Vv).BacklogFileCount
+                                        $BacklogCount = $OutboundPartnerWMI.GetOutboundBacklogFileCount($Vv).BacklogFileCount  | select-object -first 1
 					Write-Output "<result>"
 					Write-Output "<channel>${ReplicatedFolderName} Out</channel>"
 					Write-Output "<value>${BacklogCount}</value>"
